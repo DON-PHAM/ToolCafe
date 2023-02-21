@@ -32,5 +32,13 @@ namespace ToolCafe.DAO
             }
             return lstBillInfo;
         }
+        public void InsertBillInfo(int id)
+        {
+            DataProvider.Insance.ExecuteNonQuery("exec USP_InsertBill @idTable", new object[] { id });
+        }
+        public void InsertBillInfo(int idBill, int idFood, int count)
+        {
+            DataProvider.Insance.ExecuteNonQuery("exec USP_InsertBillInfo @idBill , @idFood , @count", new object[] { idBill, idFood, count });
+        }
     }
 }

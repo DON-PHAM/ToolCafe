@@ -35,8 +35,13 @@ namespace ToolCafe
             this.mnProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lsvBill = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtTotalPrice = new System.Windows.Forms.TextBox();
             this.cbSwitchTable = new System.Windows.Forms.ComboBox();
             this.btnSwitch = new System.Windows.Forms.Button();
             this.nmDisCount = new System.Windows.Forms.NumericUpDown();
@@ -44,9 +49,9 @@ namespace ToolCafe
             this.btnCheck = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.nmFooCount = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btnAddFood = new System.Windows.Forms.Button();
+            this.cbFood = new System.Windows.Forms.ComboBox();
+            this.cbCategory = new System.Windows.Forms.ComboBox();
             this.flpTable = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -86,37 +91,59 @@ namespace ToolCafe
             // mnProfile
             // 
             this.mnProfile.Name = "mnProfile";
-            this.mnProfile.Size = new System.Drawing.Size(180, 22);
+            this.mnProfile.Size = new System.Drawing.Size(170, 22);
             this.mnProfile.Text = "Thông tin cá nhân";
             this.mnProfile.Click += new System.EventHandler(this.mnProfile_Click);
             // 
             // đăngXuấtToolStripMenuItem
             // 
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.listView1);
+            this.panel2.Controls.Add(this.lsvBill);
             this.panel2.Location = new System.Drawing.Point(408, 104);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(380, 288);
             this.panel2.TabIndex = 2;
             // 
-            // listView1
+            // lsvBill
             // 
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(3, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(374, 362);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.List;
+            this.lsvBill.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.lsvBill.GridLines = true;
+            this.lsvBill.HideSelection = false;
+            this.lsvBill.Location = new System.Drawing.Point(3, 0);
+            this.lsvBill.Name = "lsvBill";
+            this.lsvBill.Size = new System.Drawing.Size(374, 362);
+            this.lsvBill.TabIndex = 0;
+            this.lsvBill.UseCompatibleStateImageBehavior = false;
+            this.lsvBill.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Tên món";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Số lượng";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Đơn giá";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Thành tiền";
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.txtTotalPrice);
             this.panel3.Controls.Add(this.cbSwitchTable);
             this.panel3.Controls.Add(this.btnSwitch);
             this.panel3.Controls.Add(this.nmDisCount);
@@ -126,6 +153,17 @@ namespace ToolCafe
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(377, 57);
             this.panel3.TabIndex = 3;
+            // 
+            // txtTotalPrice
+            // 
+            this.txtTotalPrice.Location = new System.Drawing.Point(165, 18);
+            this.txtTotalPrice.Name = "txtTotalPrice";
+            this.txtTotalPrice.ReadOnly = true;
+            this.txtTotalPrice.Size = new System.Drawing.Size(125, 23);
+            this.txtTotalPrice.TabIndex = 9;
+            this.txtTotalPrice.TabStop = false;
+            this.txtTotalPrice.Text = "0";
+            this.txtTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // cbSwitchTable
             // 
@@ -146,14 +184,14 @@ namespace ToolCafe
             // 
             // nmDisCount
             // 
-            this.nmDisCount.Location = new System.Drawing.Point(166, 31);
+            this.nmDisCount.Location = new System.Drawing.Point(85, 31);
             this.nmDisCount.Name = "nmDisCount";
             this.nmDisCount.Size = new System.Drawing.Size(74, 23);
             this.nmDisCount.TabIndex = 6;
             // 
             // btnDisCount
             // 
-            this.btnDisCount.Location = new System.Drawing.Point(165, 3);
+            this.btnDisCount.Location = new System.Drawing.Point(84, 3);
             this.btnDisCount.Name = "btnDisCount";
             this.btnDisCount.Size = new System.Drawing.Size(75, 28);
             this.btnDisCount.TabIndex = 5;
@@ -172,9 +210,9 @@ namespace ToolCafe
             // panel4
             // 
             this.panel4.Controls.Add(this.nmFooCount);
-            this.panel4.Controls.Add(this.button1);
-            this.panel4.Controls.Add(this.comboBox2);
-            this.panel4.Controls.Add(this.comboBox1);
+            this.panel4.Controls.Add(this.btnAddFood);
+            this.panel4.Controls.Add(this.cbFood);
+            this.panel4.Controls.Add(this.cbCategory);
             this.panel4.Location = new System.Drawing.Point(408, 27);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(377, 57);
@@ -197,30 +235,32 @@ namespace ToolCafe
             0,
             0});
             // 
-            // button1
+            // btnAddFood
             // 
-            this.button1.Location = new System.Drawing.Point(232, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 51);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Thêm món ";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAddFood.Location = new System.Drawing.Point(232, 3);
+            this.btnAddFood.Name = "btnAddFood";
+            this.btnAddFood.Size = new System.Drawing.Size(75, 51);
+            this.btnAddFood.TabIndex = 2;
+            this.btnAddFood.Text = "Thêm món ";
+            this.btnAddFood.UseVisualStyleBackColor = true;
+            this.btnAddFood.Click += new System.EventHandler(this.btnAddFood_Click);
             // 
-            // comboBox2
+            // cbFood
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(3, 31);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(223, 23);
-            this.comboBox2.TabIndex = 1;
+            this.cbFood.FormattingEnabled = true;
+            this.cbFood.Location = new System.Drawing.Point(3, 31);
+            this.cbFood.Name = "cbFood";
+            this.cbFood.Size = new System.Drawing.Size(223, 23);
+            this.cbFood.TabIndex = 1;
             // 
-            // comboBox1
+            // cbCategory
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(3, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(223, 23);
-            this.comboBox1.TabIndex = 0;
+            this.cbCategory.FormattingEnabled = true;
+            this.cbCategory.Location = new System.Drawing.Point(3, 3);
+            this.cbCategory.Name = "cbCategory";
+            this.cbCategory.Size = new System.Drawing.Size(223, 23);
+            this.cbCategory.TabIndex = 0;
+            this.cbCategory.SelectedIndexChanged += new System.EventHandler(this.cbCategory_SelectedIndexChanged);
             // 
             // flpTable
             // 
@@ -247,6 +287,7 @@ namespace ToolCafe
             this.menuStrip1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmDisCount)).EndInit();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nmFooCount)).EndInit();
@@ -262,18 +303,23 @@ namespace ToolCafe
         private System.Windows.Forms.ToolStripMenuItem mnProfile;
         private System.Windows.Forms.ToolStripMenuItem đăngXuấtToolStripMenuItem;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lsvBill;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.NumericUpDown nmFooCount;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btnAddFood;
+        private System.Windows.Forms.ComboBox cbFood;
+        private System.Windows.Forms.ComboBox cbCategory;
         private System.Windows.Forms.ComboBox cbSwitchTable;
         private System.Windows.Forms.Button btnSwitch;
         private System.Windows.Forms.NumericUpDown nmDisCount;
         private System.Windows.Forms.Button btnDisCount;
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.FlowLayoutPanel flpTable;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.TextBox txtTotalPrice;
     }
 }

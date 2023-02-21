@@ -50,6 +50,9 @@ namespace ToolCafe.DTO
             set { status = value; }
         }
 
-        public int ID { get => iD; set => iD = value; }
+        public int ID {
+            get { return iD; }
+            set { iD = value; }
+        }
     }
 }

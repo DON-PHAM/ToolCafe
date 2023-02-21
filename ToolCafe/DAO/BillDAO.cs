@@ -36,5 +36,22 @@ namespace ToolCafe.DAO
             return -1;
         }
 
+        public void InsertBill(int id)
+        {
+            DataProvider.Insance.ExecuteNonQuery("exec USP_InsertBill @idTable", new object[] { id });
+        }
+        public int GetMaxIdBill()
+        {
+            try
+            {
+                return (int)DataProvider.Insance.ExecuteScalar("select max(id) from dbo.Bill");
+            }
+            catch
+            {
+                return 1;
+            }
+            
+        }
+
     }
 }

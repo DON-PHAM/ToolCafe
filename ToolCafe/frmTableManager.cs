@@ -43,13 +43,36 @@ namespace ToolCafe
 
             }
         }
+        void LoadCategory()
+        {
+            List<Category> listCategory = CategoryDAO.Instance.GetListCategory();
+            cbCategory.DataSource = listCategory;
+            cbCategory.DisplayMember = "Name";
+        }
+        void LoadFoodListByCategoryID(int id)
+        {
+            List<Food> listFood = FoodDAO.Instance.GetFoodByCategoryID(id);
+            cbFood.DataSource = listFood;
+            cbFood.DisplayMember = "Name";
+
+        }
 
         void ShowBill(int id)
         {
-            List<BillInfo> lstBillInfo = BillInfoDAO.Instance.GetListBillInfo(BillDAO.Instance.GetUnCheckBillIDByTableID(id));
-            foreach(BillInfo item in lstBillInfo)
-            {
+            lsvBill.Items.Clear();
+            List<Menu> lstBillInfo = MenuDAO.Instance.GetListMenuByTable(id);
 
+            float totalPrice = 0;
+
+
+            foreach(Menu item in lstBillInfo)
+            {
+                ListViewItem lsvItem = new ListViewItem(item.FoodName.ToString());
+                lsvItem.SubItems.Add(item.Count.ToString());
+                lsvItem.SubItems.Add(item.Price.ToString());
+                lsvItem.SubItems.Add(item.TotalPrice.ToString());
+                totalPrice += item.TotalPrice;
+                lsvBill.Items.Add(lsvItem);
             }
         }
 
@@ -59,6 +82,7 @@ namespace ToolCafe
         private void btn_Click(object sender, EventArgs e)
         {
             int tableId = ((sender as Button).Tag as Table).ID;
+            lsvBill.Tag = (sender as Button).Tag;
             ShowBill(tableId);
         }
         private void mnProfile_Click(object sender, EventArgs e)
@@ -76,6 +100,37 @@ namespace ToolCafe
             f.ShowDialog();
             this.Show();
         }
+        private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = 0;
+
+            ComboBox cb = sender as ComboBox;
+
+            if (cb.SelectedItem == null)
+                return;
+            Category selected = cb.SelectedItem as Category;
+            id = selected.ID;
+            LoadFoodListByCategoryID(id);
+        }
+        private void btnAddFood_Click(object sender, EventArgs e)
+        {
+            Table table = lsvBill.Tag as Table;
+            int idBill = BillDAO.Instance.GetUnCheckBillIDByTableID(table.ID);
+            int foodID = (cbFood.SelectedItem as Food).ID;
+            int count = (int)nmFooCount.Value;
+            if(idBill == 1)
+            {
+                BillDAO.Instance.InsertBill(table.ID);
+                BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxIdBill(),foodID,count);
+            }
+            else
+            {
+                BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxIdBill(), foodID, count);
+            }
+            ShowBill(table.ID);
+        }
         #endregion
+
+
     }
 }
