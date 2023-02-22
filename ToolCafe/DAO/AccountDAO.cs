@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ToolCafe.DTO;
 
 namespace ToolCafe.DAO
 {
@@ -22,9 +23,26 @@ namespace ToolCafe.DAO
 
         public bool Login(string userName, string passWord)
         {
-            string query = @"SELECT * from Account where UserName = N'"+userName+"' AND Password = N'"+passWord+"'";
-            DataTable result = DataProvider.Insance.ExecuteQuery(query);
+            string query = @"USP_LOGIN @userName , @password";
+            DataTable result = DataProvider.Insance.ExecuteQuery(query,new object[] {userName, passWord});
             return result.Rows.Count > 0;
+        }
+
+        public Account GetAccountByUserName(string userName)
+        {
+            string query = @"select * from Account where userName ='" + userName+"'";
+            DataTable dt = DataProvider.Insance.ExecuteQuery(query);
+            foreach (DataRow dr in dt.Rows)
+            {
+                return new Account(dr);
+            }
+            return null;
+        }
+
+        public bool UpdateAccount(string userName, string displayName, string pass, string newPass)
+        {
+            int result = DataProvider.Insance.ExecuteNonQuery("USP_UpdateAccount @userName , @displayName , @password , @newPassword ", new object[] { userName, displayName, pass, newPass });
+            return result > 0;
         }
     }
 }

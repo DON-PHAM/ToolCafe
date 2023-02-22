@@ -30,20 +30,22 @@ namespace ToolCafe
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtUserName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtDisplayName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtPasswordOld = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtPasswordNew = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtRepasswordNew = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -53,19 +55,20 @@ namespace ToolCafe
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txtUserName);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(381, 73);
             this.panel1.TabIndex = 0;
             // 
-            // textBox1
+            // txtUserName
             // 
-            this.textBox1.Location = new System.Drawing.Point(105, 22);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(262, 23);
-            this.textBox1.TabIndex = 1;
+            this.txtUserName.Location = new System.Drawing.Point(105, 22);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.ReadOnly = true;
+            this.txtUserName.Size = new System.Drawing.Size(262, 23);
+            this.txtUserName.TabIndex = 1;
             // 
             // label1
             // 
@@ -78,19 +81,19 @@ namespace ToolCafe
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.txtDisplayName);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(12, 91);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(381, 73);
             this.panel2.TabIndex = 2;
             // 
-            // textBox2
+            // txtDisplayName
             // 
-            this.textBox2.Location = new System.Drawing.Point(105, 22);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(262, 23);
-            this.textBox2.TabIndex = 1;
+            this.txtDisplayName.Location = new System.Drawing.Point(105, 22);
+            this.txtDisplayName.Name = "txtDisplayName";
+            this.txtDisplayName.Size = new System.Drawing.Size(262, 23);
+            this.txtDisplayName.TabIndex = 1;
             // 
             // label2
             // 
@@ -103,19 +106,19 @@ namespace ToolCafe
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.textBox3);
+            this.panel3.Controls.Add(this.txtPasswordOld);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Location = new System.Drawing.Point(12, 170);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(381, 73);
             this.panel3.TabIndex = 2;
             // 
-            // textBox3
+            // txtPasswordOld
             // 
-            this.textBox3.Location = new System.Drawing.Point(105, 22);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(262, 23);
-            this.textBox3.TabIndex = 1;
+            this.txtPasswordOld.Location = new System.Drawing.Point(105, 22);
+            this.txtPasswordOld.Name = "txtPasswordOld";
+            this.txtPasswordOld.Size = new System.Drawing.Size(262, 23);
+            this.txtPasswordOld.TabIndex = 1;
             // 
             // label3
             // 
@@ -128,19 +131,19 @@ namespace ToolCafe
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.textBox4);
+            this.panel4.Controls.Add(this.txtPasswordNew);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Location = new System.Drawing.Point(12, 249);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(381, 73);
             this.panel4.TabIndex = 2;
             // 
-            // textBox4
+            // txtPasswordNew
             // 
-            this.textBox4.Location = new System.Drawing.Point(105, 22);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(262, 23);
-            this.textBox4.TabIndex = 1;
+            this.txtPasswordNew.Location = new System.Drawing.Point(105, 22);
+            this.txtPasswordNew.Name = "txtPasswordNew";
+            this.txtPasswordNew.Size = new System.Drawing.Size(262, 23);
+            this.txtPasswordNew.TabIndex = 1;
             // 
             // label4
             // 
@@ -153,19 +156,19 @@ namespace ToolCafe
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.textBox5);
+            this.panel5.Controls.Add(this.txtRepasswordNew);
             this.panel5.Controls.Add(this.label5);
             this.panel5.Location = new System.Drawing.Point(12, 328);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(381, 73);
             this.panel5.TabIndex = 2;
             // 
-            // textBox5
+            // txtRepasswordNew
             // 
-            this.textBox5.Location = new System.Drawing.Point(105, 22);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(262, 23);
-            this.textBox5.TabIndex = 1;
+            this.txtRepasswordNew.Location = new System.Drawing.Point(105, 22);
+            this.txtRepasswordNew.Name = "txtRepasswordNew";
+            this.txtRepasswordNew.Size = new System.Drawing.Size(262, 23);
+            this.txtRepasswordNew.TabIndex = 1;
             // 
             // label5
             // 
@@ -176,18 +179,39 @@ namespace ToolCafe
             this.label5.TabIndex = 0;
             this.label5.Text = "Nhập lại mật khẩu";
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(228, 407);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdate.TabIndex = 3;
+            this.btnUpdate.Text = "Cập nhật";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(318, 407);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 4;
+            this.btnExit.Text = "Thoát";
+            this.btnExit.UseVisualStyleBackColor = true;
+            // 
             // frmAccountProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(412, 476);
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "frmAccountProfile";
-            this.Text = "frmAccountProfile";
+            this.Text = "Thông tin tài khoản";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -205,19 +229,21 @@ namespace ToolCafe
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtDisplayName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtPasswordOld;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtPasswordNew;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtRepasswordNew;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnExit;
     }
 }

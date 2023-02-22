@@ -14,12 +14,30 @@ namespace ToolCafe
 {
     public partial class frmTableManager : Form
     {
-        public frmTableManager()
+        private Account loginAccount;
+
+        public Account LoginAccount { 
+            get { return loginAccount; }
+            set { loginAccount = value; ChangeAccount(loginAccount.Type); }
+        }
+
+        public frmTableManager(Account acc)
         {
             InitializeComponent();
+            this.LoginAccount = acc;
+            LoadTable();
+            LoadCategory();
+            
         }
 
         #region METHOD
+
+        void ChangeAccount(int type)
+        {
+            tadmin.Enabled = type == 1;
+            thôngTinTàiKhoảnToolStripMenuItem.Text += " (" + LoginAccount.DisplayName + " )"; 
+
+        }
         void LoadTable()
         {
             List<Table> tablelist = TableDAO.Instance.LoadTableList();
@@ -87,10 +105,15 @@ namespace ToolCafe
         }
         private void mnProfile_Click(object sender, EventArgs e)
         {
-            frmAccountProfile f = new frmAccountProfile();
-            this.Hide();
+            frmAccountProfile f = new frmAccountProfile(loginAccount);
+            f.UpdateAccount += f_UpdateAccount;
             f.ShowDialog();
-            this.Show();
+            
+        }
+
+        private void f_UpdateAccount(object sender, AccountEvent e)
+        {
+            thôngTinTàiKhoảnToolStripMenuItem.Text = "Thông tin tài khoản (" + e.Acc.DisplayName + ")";
         }
 
         private void tadmin_Click(object sender, EventArgs e)
@@ -114,20 +137,31 @@ namespace ToolCafe
         }
         private void btnAddFood_Click(object sender, EventArgs e)
         {
-            Table table = lsvBill.Tag as Table;
-            int idBill = BillDAO.Instance.GetUnCheckBillIDByTableID(table.ID);
-            int foodID = (cbFood.SelectedItem as Food).ID;
-            int count = (int)nmFooCount.Value;
-            if(idBill == 1)
+            try
             {
-                BillDAO.Instance.InsertBill(table.ID);
-                BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxIdBill(),foodID,count);
+                Table table = lsvBill.Tag as Table;
+                if(table != null)
+                {
+                    int idBill = BillDAO.Instance.GetUnCheckBillIDByTableID(table.ID);
+                    int foodID = (cbFood.SelectedItem as Food).ID;
+                    int count = (int)nmFooCount.Value;
+                    if (idBill == 1)
+                    {
+                        BillDAO.Instance.InsertBill(table.ID);
+                        BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxIdBill(), foodID, count);
+                    }
+                    else
+                    {
+                        BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxIdBill(), foodID, count);
+                    }
+                    ShowBill(table.ID);
+                }
+                
             }
-            else
+            catch(Exception ex)
             {
-                BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxIdBill(), foodID, count);
+                MessageBox.Show("Không có bàn nào");
             }
-            ShowBill(table.ID);
         }
         #endregion
 

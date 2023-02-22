@@ -27,12 +27,14 @@ namespace ToolCafe.DAO
         /// <returns></returns>
         public int GetUnCheckBillIDByTableID(int id)
         {
+
             DataTable dt = DataProvider.Insance.ExecuteQuery("selec * from dbo.Bill idTable =" + id + " And status = 0");
-            if(dt.Rows.Count > 0)
+            if (dt.Rows.Count > 0)
             {
                 Bill bill = new Bill(dt.Rows[0]);
                 return bill.ID;
             }
+
             return -1;
         }
 
@@ -50,7 +52,7 @@ namespace ToolCafe.DAO
             {
                 return 1;
             }
-            
+
         }
 
     }

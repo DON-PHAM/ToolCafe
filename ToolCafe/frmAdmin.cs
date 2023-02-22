@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ToolCafe.DTO;
 
 namespace ToolCafe
 {
@@ -16,6 +17,10 @@ namespace ToolCafe
         public frmAdmin()
         {
             InitializeComponent();
+            
         }
+
+
+        
     }
 }
