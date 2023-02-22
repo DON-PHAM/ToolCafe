@@ -14,12 +14,13 @@ namespace ToolCafe.DTO
         private int status;
         private int iD;
 
-        public Bill(int id, DateTime? dateCheckIn, DateTime? dateCheckOut, int status)
+        public Bill(int id, DateTime? dateCheckIn, DateTime? dateCheckOut, int status,int discount = 0)
         {
             this.iD= id;
             this.DateCheckIn= dateCheckIn;
             this.DateCheckOut= dateCheckOut;
             this.Status = status;
+            this.Discount= discount;
         }
 
         public Bill(DataRow dr)
@@ -33,7 +34,10 @@ namespace ToolCafe.DTO
             }    
             
             this.Status = (int)dr["status"];
+            this.Discount = (int)dr["discount"];
         }
+
+        private int discount;
 
         public DateTime? DateCheckIn { 
             get { return dateCheckIn; } 
@@ -54,5 +58,7 @@ namespace ToolCafe.DTO
             get { return iD; }
             set { iD = value; }
         }
+
+        public int Discount { get => discount; set => discount = value; }
     }
 }

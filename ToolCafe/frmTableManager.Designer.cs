@@ -46,7 +46,7 @@ namespace ToolCafe
             this.btnSwitch = new System.Windows.Forms.Button();
             this.nmDisCount = new System.Windows.Forms.NumericUpDown();
             this.btnDisCount = new System.Windows.Forms.Button();
-            this.btnCheck = new System.Windows.Forms.Button();
+            this.btnCheckOut = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.nmFooCount = new System.Windows.Forms.NumericUpDown();
             this.btnAddFood = new System.Windows.Forms.Button();
@@ -148,7 +148,7 @@ namespace ToolCafe
             this.panel3.Controls.Add(this.btnSwitch);
             this.panel3.Controls.Add(this.nmDisCount);
             this.panel3.Controls.Add(this.btnDisCount);
-            this.panel3.Controls.Add(this.btnCheck);
+            this.panel3.Controls.Add(this.btnCheckOut);
             this.panel3.Location = new System.Drawing.Point(411, 398);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(377, 57);
@@ -198,14 +198,15 @@ namespace ToolCafe
             this.btnDisCount.Text = "Giảm giá";
             this.btnDisCount.UseVisualStyleBackColor = true;
             // 
-            // btnCheck
+            // btnCheckOut
             // 
-            this.btnCheck.Location = new System.Drawing.Point(296, 3);
-            this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(75, 51);
-            this.btnCheck.TabIndex = 4;
-            this.btnCheck.Text = "Thanh toán";
-            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheckOut.Location = new System.Drawing.Point(296, 3);
+            this.btnCheckOut.Name = "btnCheckOut";
+            this.btnCheckOut.Size = new System.Drawing.Size(75, 51);
+            this.btnCheckOut.TabIndex = 4;
+            this.btnCheckOut.Text = "Thanh toán";
+            this.btnCheckOut.UseVisualStyleBackColor = true;
+            this.btnCheckOut.Click += new System.EventHandler(this.btnCheckOut_Click);
             // 
             // panel4
             // 
@@ -314,7 +315,7 @@ namespace ToolCafe
         private System.Windows.Forms.Button btnSwitch;
         private System.Windows.Forms.NumericUpDown nmDisCount;
         private System.Windows.Forms.Button btnDisCount;
-        private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.Button btnCheckOut;
         private System.Windows.Forms.FlowLayoutPanel flpTable;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
