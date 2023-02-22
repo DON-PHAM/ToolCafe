@@ -22,6 +22,7 @@ namespace ToolCafe
         #region METHOD
         void LoadTable()
         {
+            lsvBill.Items.Clear();
             List<Table> tablelist = TableDAO.Instance.LoadTableList();
             foreach (Table table in tablelist)
             {
@@ -59,6 +60,7 @@ namespace ToolCafe
 
         void ShowBill(int id)
         {
+
             lsvBill.Items.Clear();
             List<Menu> lstBillInfo = MenuDAO.Instance.GetListMenuByTable(id);
 
@@ -74,6 +76,7 @@ namespace ToolCafe
                 totalPrice += item.TotalPrice;
                 lsvBill.Items.Add(lsvItem);
             }
+           
         }
 
         #endregion
@@ -128,9 +131,29 @@ namespace ToolCafe
                 BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxIdBill(), foodID, count);
             }
             ShowBill(table.ID);
+            LoadTable();
         }
+
         #endregion
 
+        private void btnCheckOut_Click(object sender, EventArgs e)
+        {
+            Table table = lsvBill.Tag as Table;
+            int idBill = BillDAO.Instance.GetUnCheckBillIDByTableID(table.ID);
+            int discount = (int)nmDisCount.Value;
+            double totlaPrice = Convert.ToDouble(txtTotalPrice.Text);
+            double finalTotalPrice = totlaPrice - (totlaPrice / 100) * discount;
+            if(idBill != -1)
+            {
+                if(MessageBox.Show(string.Format("Bạn có chắc thanh toán hóa đơn cho bàn {0}\n sau giảm giá {1}% là {2}  ", table.Name,discount,finalTotalPrice),"Thông báo",MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    BillDAO.Instance.CheckOut(idBill,discount);
+                    ShowBill(table.ID);
+                    LoadTable();
 
+                }
+            }
+
+        }
     }
 }

@@ -36,6 +36,12 @@ namespace ToolCafe.DAO
             return -1;
         }
 
+        public void CheckOut(int id,int discount)
+        {
+            string query = "UPDATe dbo.Bill set status = 1, discount = "+discount+" where id =" +id;
+            DataProvider.Insance.ExecuteNonQuery(query);
+        }
+
         public void InsertBill(int id)
         {
             DataProvider.Insance.ExecuteNonQuery("exec USP_InsertBill @idTable", new object[] { id });

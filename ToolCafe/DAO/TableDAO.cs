@@ -12,14 +12,17 @@ namespace ToolCafe.DAO
     {
         private TableDAO() { }
         private static TableDAO instance;
-
+        public static int TableWidth = 100;
+        public static int TableHeight = 100;
         public static TableDAO Instance { 
             get { if(instance == null)  instance= new TableDAO(); return instance; }
             private set { TableDAO.instance = value; }
         }
 
-        public static int TableWidth = 100;
-        public static int TableHeight = 100;
+        public void SwitchTable(int idTableTo, int idTableFrom)
+        {
+
+        }
 
         public List<Table> LoadTableList() 
         {
