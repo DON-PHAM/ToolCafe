@@ -61,5 +61,20 @@ namespace ToolCafe.DAO
 
         }
 
+        public List<Bill> GetBillListByDate(DateTime checkIn, DateTime checkOut)
+        {
+            List<Bill> lstBill = new List<Bill>();
+            string query = @"select * from dbo.Bill where DateCheckIn =" + checkIn + " and DateCheckOut =" + checkOut;
+
+            DataTable dt = DataProvider.Insance.ExecuteQuery(query);
+            foreach (DataRow dr in dt.Rows)
+            {
+                Bill bill = new Bill(dr);
+
+                lstBill.Add(bill);
+            }
+            return lstBill;
+        }
+
     }
 }

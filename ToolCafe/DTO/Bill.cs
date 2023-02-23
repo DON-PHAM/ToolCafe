@@ -26,8 +26,8 @@ namespace ToolCafe.DTO
         public Bill(DataRow dr)
         {
             this.ID = (int)dr["ID"];
-            this.DateCheckIn = (DateTime?)dr["dateCheckin"];
-            var dateCheckOutTemp = dr["dateCheckout"];
+            this.DateCheckIn = (DateTime?)dr["DateCheckIn"];
+            var dateCheckOutTemp = dr["DateCheckOut"];
             if(dateCheckOutTemp.ToString() != "")
             {
                 this.DateCheckOut = (DateTime?)dateCheckOutTemp;

@@ -31,5 +31,20 @@ namespace ToolCafe.DAO
             }
             return lstCat;
         }
+
+        public Category GetCategoryById(int id)
+        {
+            Category cat = null; ;
+            string query = @"Select * from dbo.FoodCategory where Id= " + id;
+
+            DataTable dt = DataProvider.Insance.ExecuteQuery(query);
+            foreach (DataRow dr in dt.Rows)
+            {
+                cat = new Category(dr);
+
+                return cat;
+            }
+            return cat;
+        }
     }
 }
